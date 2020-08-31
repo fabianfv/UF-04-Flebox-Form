@@ -1,3 +1,12 @@
+:root {
+  --medium-radius: 0.5rem;
+  --small-radius: 0.25rem;
+  --control-bg-color: #8150ce;
+  --selected-bg-color: #533188;
+  --gray-border-color: #cfcece;
+  --control-height: 2.5rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -16,16 +25,18 @@ body {
 }
 
 form {
-  border: 1px solid #cfcece;
-  border-radius: 5px;
-  padding: 2%;
-  margin: 2%;
+  margin: 2% 0;
+}
 
+form.credit-card {
+  border: 1px solid var(--gray-border-color);
+  border-radius: var(--medium-radius);
+  padding: 2%;
   display: flex;
   flex-direction: column;
 }
 
-form > h3 {
+form.credit-card>h3 {
   text-align: center;
 }
 
@@ -33,26 +44,137 @@ form > h3 {
   display: flex;
 }
 
-form > * {
+form.credit-card>* {
   margin: 2% 0;
 }
 
-input {
-  width: 100%;
-  border: 1px solid #cfcece;
-  border-radius: 3px;
+form.credit-card input,
+form.credit-card button {
+  border: 1px solid var(--gray-border-color);
+  border-radius: var(--small-radius);
+  height: var(--control-height);
 }
 
-input.left {
+form.credit-card input.left {
   margin-right: 2%;
   width: 49%;
 }
 
-input.right {
+form.credit-card input.right {
   width: 49%;
 }
 
-button {
-  border: 1px solid #cfcece;
-  border-radius: 3px;
+form.credit-card button {
+  border: 1px solid var(--gray-border-color);
+  border-radius: var(--small-radius);
 }
+
+/***************
+* Multi-buttons
+****************/
+
+form.buttons fieldset {
+  padding: 10px 15px;
+  border-radius: var(--medium-radius);
+  border: 1px solid var(--gray-border-color);
+}
+
+form.buttons fieldset div.multi-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+form.buttons fieldset div.multi-button input[type="radio"] {
+  display: none;
+}
+
+form.buttons fieldset div.multi-button label {
+  text-align: center;
+  background-color: var(--control-bg-color);
+  color: white;
+  padding: 0 2rem;
+  line-height: var(--control-height);
+  border: 1px solid var(--selected-bg-color);
+  user-select: none;
+
+  /*
+  flexbox no puede asegurar que cada elemento tenga el mismo ancho,
+  la configuración siguiente solo funcionará si el contenedor tiene
+  espacio suficiente, si no cada elemento se ajustará al ancho de su
+  contenido (+ padding, + margin si border-box)
+
+  flex: 1 1 0;
+  */
+
+  /*
+  La siguiente es la configuración más segura en combinación con
+  "flex-wrap: wrap" en el contenedor ya que el texto de las etiquetas
+  se mantendrá siempre en una línea y si no cabe en una línea se
+  "envolverá" en una línea nueva.
+  */
+  flex: 1 1 auto;
+}
+
+/*
+* It's not possible in a wrapped flex container to select
+* first and last elements per row to apply them rounded left
+* and right borders, respectively. There's no css selector
+* for that (it should be something like
+* "main-axis-first-child", "main-axis-last-child",
+* "cross-axis-first-child", "cross-axis-last-child")
+*/
+
+/*
+form.buttons fieldset div.multi-button label:first-child {
+  border-top-left-radius: var(--small-radius);
+  border-bottom-left-radius: var(--small-radius);
+}
+
+form.buttons fieldset div.multi-button label:last-child {
+  border-top-right-radius: var(--small-radius);
+  border-bottom-right-radius: var(--small-radius);
+}
+*/
+
+/*************
+* search bar
+**************/
+
+.button-search {
+  background-color: var(--control-bg-color);
+  border: 0;
+  border-top-right-radius: var(--small-radius);
+  border-bottom-right-radius: var(--small-radius);
+  padding: 0 1rem;
+
+  flex: 0 0 auto;
+}
+
+.button-search,
+.input-search {
+  height: var(--control-height);
+}
+
+.img-search {
+  height: calc(var(--control-height) * 0.8);
+}
+
+.search-container {
+  display: flex;
+}
+
+.fieldset-search {
+  padding: 1rem;
+  border-radius: var(--medium-radius);
+  border: 1px solid var(--gray-border-color);
+}
+
+.input-search {
+  flex: 1 1 auto;
+  border: 1px solid var(--gray-border-color);
+  border-top-left-radius: var(--small-radius);
+  border-bottom-left-radius: var(--small-radius);
+}
+

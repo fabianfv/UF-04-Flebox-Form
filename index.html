@@ -9,12 +9,15 @@
 </head>
 
 <body>
-  <form>
+  <form class="credit-card">
 
     <h3>Credit Card Form</h3>
-    <div class="fieldset">
-      <input type="text" placeholder="Name on Card">
-    </div>
+
+    <input type="text" placeholder="Name on Card">
+    <!--
+      Chrome (y tal vez otros navegadores, excepto firefox) tiene un bug
+      que no permite que elementos fieldset funcionen como contenedores flex
+    -->
     <div class="fieldset">
       <input class="left" type="text" placeholder="Credit Card Number">
       <input class="right" type="text" placeholder="CVC">
@@ -23,9 +26,45 @@
       <input class="left" type="text" placeholder="Exp. Month">
       <input class="right" type="text" placeholder="Exp. Year">
     </div>
+
     <button>Buy for $99.99</button>
 
   </form>
+
+  <form class="buttons">
+    <fieldset>
+      <legend>Size</legend>
+      <div class="multi-button">
+        <input type="radio" name="height" id="short" value="short">
+        <label for="short">Short</label>
+
+        <input type="radio" name="height" id="medium" value="medium">
+        <label for="medium">Medium</label>
+
+        <input type="radio" name="height" id="large" value="large">
+        <label for="large">Large</label>
+
+        <input type="radio" name="height" id="extra-large" value="extra-large">
+        <label for="extra-large">Extra Large</label>
+
+        <input type="radio" name="height" id="extra-extra-large" value="extra-extra-large">
+        <label for="extra-extra-large">Extra extra Large</label>
+
+      </div>
+    </fieldset>
+  </form>
+
+  <form class="form-search">
+    <fieldset class="fieldset-search">
+      <div class="search-container">
+        <input class="input-search" type="text" placeholder="search for something">
+        <button class="button-search">
+          <img class="img-search" src="img/search.svg" alt="">
+        </button>
+      </div>
+    </fieldset>
+  </form>
+
 </body>
 
 </html>
